@@ -1,0 +1,25 @@
+# Build Stage
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app
+
+# Copiar el archivo pom.xml y descargar las dependencias
+COPY pom.xml .
+RUN mvn dependency:resolve
+
+# Copiar el resto del proyecto y construir el paquete sin ejecutar las pruebas
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Run Stage
+FROM openjdk:17-jdk-slim
+LABEL maintainer="example@example.com"
+LABEL version="1.0"
+COPY --from=build /app/target/app.jar app_bazar.jar # cambiar app_bazardockerfile por nombre de proyecto y version
+EXPOSE 8080 #cambiar el puerto segun sea necesario
+
+# Configurar el healthcheck
+HEALTHCHECK --interval=00s --timeout=00s --retries=0 CMD curl --fail http://localhost:8080/ameno/salud || exit 1 #cambiar el puerto segun sea necesario, --interval, --timeout, --retries y la url
+
+# Comando para ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "app_laVentadeBazar.jar"] #Cambiar nombre de la ejecucion ("app_laVentadeBazar.jar")si es necesario
+

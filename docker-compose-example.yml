@@ -1,0 +1,61 @@
+services:
+  bazarventa:
+    container_name: name_container // colocar nombre del contenedor
+    build:
+      context: .
+    mem_limit: 512m
+    ports:
+      - "port: port" // colocar puerto en port
+    restart: always
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+
+  postgresql:
+    container_name: name_container  // colocar nombre del contenedor
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres # Usa el Dockerfile-postgres
+    ports:
+      - "port: port"   // colocar puerto en port
+    restart: always
+    environment:
+      POSTGRES_USER: user   // colocar el usuario en user
+      POSTGRES_PASSWORD: password   // colocar la contraseña en password
+      POSTGRES_DB: data_base   // colocar la base de datos en data_base
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -h name_container -d data_base" ]   // colocar container en name_container y colocar la base de datos en data_base
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+
+  sonarqube:
+    container_name: name_container // Colocar nombre del container en name_container
+    image: sonarqube:latest
+    ports:
+      - "port:port"   // Colocar el puerto en port
+    environment:
+      SONARQUBE_JDBC_URL: url   // colocar la url en url
+      SONARQUBE_JDBC_USERNAME: username   // colocar el usuario en username
+      SONARQUBE_JDBC_PASSWORD: password   // colocar el password en password
+    depends_on:
+      - postgresql
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-extensions:/opt/sonarqube/extensions
+
+volumes:
+  postgres-data:
+  sonarqube-data:
+  sonarqube-logs:
+  sonarqube-extensions:    
+  
+       
+         
+
+      

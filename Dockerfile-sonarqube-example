@@ -1,0 +1,9 @@
+# Usa la imagen base oficial de SonarQube
+FROM sonarqube:latest
+
+# Ejemplo: Instalar un plugin (ajusta según sea necesario)
+RUN curl -o /opt/sonarqube/extensions/plugins/sonar-java-plugin.jar \
+    https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-6.15.1.26025.jar
+
+# Establecer permisos si es necesario
+RUN chmod -R 777 /opt/sonarqube

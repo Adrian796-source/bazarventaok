@@ -1,0 +1,134 @@
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Environment files
+.env
+
+# Archivos reales de configuracion
+
+src/main/resources/application.properties
+src/main/resources/application-local.properties
+src/main/resources/application-docker.properties
+src/test/resources/application-test.properties
+src/test/resources/application-test-local.properties
+src/test/resources/application-test-docker.properties
+
+# Ignorar archivos reales de Docker
+docker-compose.yml
+Dockerfile
+Dockerfile-postgres
+Dockerfile-sonarqube
+
+# Ignorar volúmenes y datos generados por Docker
+*.log
+*.tmp
+docker-data/
+
+
+# Carpetas temporales
+tmp/
+logs/
+
+### Otros ###
+# Archivos YAML adicionales
+*.yaml
+
+# Archivos de Construcción y Dependencias:
+
+    target/ (directorio generado por Maven)
+
+    node_modules/ (si estás usando Node.js)
+
+    build/ (directorio de construcción)
+
+    .idea/ (configuración de IntelliJ IDEA)
+
+    .vscode/ (configuración de Visual Studio Code)
+
+# Archivos Temporales y de Sistema:
+
+    *.log (archivos de log)
+
+    *.tmp (archivos temporales)
+
+    *.swp (archivos de swap de editores como Vim)
+
+    *.iml (archivos de módulo de IntelliJ IDEA)
+
+    .DS_Store (archivo creado por macOS en directorios)
+
+    Thumbs.db (archivo creado por Windows en directorios)
+
+
+# No sera ratreda por git la carpeta target
+
+/target/
+
+# Ignorar archivos de configuración de NetBeans
+nbactions.xml
+
+# Ignorar directorios y archivos específicos de NetBeans
+nbproject/   # Directorio de configuración de NetBeans
+*.nb-gradle  # Archivos de configuración específicos de NetBeans en proyectos Gradle
+
+# Archivos del sistema
+.bash_history
+.bash_logout
+.bashrc
+.gnupg/
+.java/
+.local/
+.m2/
+.npm/
+.pgadmin/
+.pki/
+.profile
+.psql_history
+.sonar/
+.sonarlint/
+.sts4/
+.sudo_as_admin_successful
+.vault-token
+.viminfo
+.vscode/
+.wget-hsts
+.yarn/
+.yarnrc
+.gitconfig
+.git-secrets/
+.docker/
+.dotnet/
+.docker-desktop-amd64.deb
+.snap/
+.yarn/
+
+# Archivos comprimidos y otros no relacionados
+*.zip
+*.tar.gz
+*.rar
+Descargas/
